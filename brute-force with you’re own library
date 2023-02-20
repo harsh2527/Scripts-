@@ -1,0 +1,19 @@
+import requests
+
+# Open the text file and read its contents
+with open('data.txt', 'r') as file:
+    # Loop through each line and prompt the user to input the value
+    for line in file:
+        # Remove any leading or trailing whitespace
+        value = line.strip()
+        
+        # Prompt the user to enter the value
+        user_input = input(f"Enter value for '{value}': ")
+        
+        # Send a POST request with the value
+        response = requests.post('http://example.com/submit', data={'value': user_input})
+        
+        # Check if the success page is reached
+        if 'Success!' in response.text:
+            print(f"Success page reached for value '{value}'")
+            break
